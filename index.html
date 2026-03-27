@@ -1,35 +1,247 @@
-<htm>
+<!DOCTYPE html>
+<html lang="en">
     <head>
          <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deeksha Workbook — Night Train</title>
+  <title>Deeksha Workbook</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono&display=swap" rel="stylesheet">
 
   <!-- Link CSS -->
   <link rel="stylesheet" href="style.css">
+  
     </head>
 
 <body>
-       <div class="container">
+    <div id="cur"></div>
+<div id="curt"></div>
 
-  <!-- PANEL 1 -->
-  <section class="panel active">
-    <h1>Deeksha Workbook</h1>
-    <p>Design Portfolio — Night Train</p>
-  </section>
+<div class="view" id="v-outside">
+  <!-- Deep space layers -->
+  <div id="sky-bg"></div>
+  <div id="nebula"></div>
+  <div id="moon-halo"></div>
+  <div id="moon"></div>
+  <canvas id="stars-c"></canvas>
 
-  <!-- PANEL 2 -->
-  <section class="panel">
-    <h1>Workshop Content</h1>
-    <p>Click to explore projects</p>
-  </section>
+  <!-- mountains -->
+  <div id="mtns">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" width="100%" height="100">
+      <polygon points="0,100 110,38 240,72 370,18 510,58 645,12 780,52 900,28 1040,60 1170,18 1310,55 1440,32 1440,100" fill="#0E141E" opacity=".9"/>
+      <polygon points="0,100 60,62 180,88 310,44 440,80 560,36 690,70 820,42 960,76 1080,34 1220,70 1360,45 1440,58 1440,100" fill="#090D14" opacity=".95"/>
+    </svg>
+  </div>
 
+  <!-- ground + rails -->
+  <div id="gnd">
+    <div id="gnd2"></div>
+    <div id="gnd1"></div>
+    <div id="rails">
+      <div class="rl t"></div><div class="rl b"></div>
+      <div id="sw"></div>
+    </div>
+  </div>
+
+  <button id="next-btn">
+    <span>Next Carriage<span id="next-sub">Workshop Content →</span></span>
+    <div class="nba">›</div>
+  </button>
+  <div id="pb"></div>
+
+  <div id="world">
+
+     <!-- PANEL 0 — ENGINE / HERO -->
+    <div class="panel active" id="p0" style="left:0vw">
+      <div class="psky"></div>
+      <!-- hero text in top-left -->
+      <div class="panel-content">
+        <div>
+          <div class="hero-tag fi">Deeksha Workbook · 2026</div>
+          <div class="hero-name fi"><br><span>Workbook</span></div>
+          <div class="hero-sub fi">Interactive Media Train</div>
+          
+    
+        </div>
+      </div>
+    </div>
+
+  <!-- PANEL 1 Workshop -->
+  <div class="panel" id="p1" style="left:100vw">
+    <div class="psky"></div>
+  </div>
+
+  <!-- PANEL 2 Sketches -->
+  <div class="panel" id="p2" style="left:200vw">
+    <div class="psky"></div>
+  </div>
+
+   <!-- PANEL 3 Development -->
+  <div class="panel" id="p3" style="left:300vw">
+    <div class="psky"></div>
+  </div>
+
+   <!-- PANEL 4 Readings -->
+  <div class="panel" id="p4" style="left:400vw">
+    <div class="psky"></div>
+  </div>
+
+  <div id="engine-wrap">
+
+     
+      <div class="loco-shell" id="loco">
+        <!-- steam -->
+        <div class="steam-wrap">
+          <div class="sp" style="width:26px;height:26px;--spd:2.4s;left:4px;"></div>
+          <div class="sp" style="width:18px;height:18px;--spd:3s;left:14px;animation-delay:.8s;"></div>
+          <div class="sp" style="width:14px;height:14px;--spd:3.6s;left:-4px;animation-delay:1.5s;"></div>
+        </div>
+        <div class="chimney"></div>
+        <div class="loco-roof"></div>
+        <div class="loco-body">
+          <!-- 4 clickable windows -->
+          <div class="engine-wins">
+            <div class="e-win" data-car="1" title="Workshop Content">
+              <div class="e-win-label"><span class="e-win-num">①</span>Workshop<br>Content</div>
+            </div>
+            <div class="e-win" data-car="2" title="Sketches & Wireframes">
+              <div class="e-win-label"><span class="e-win-num">②</span>Sketches &<br>Wireframes</div>
+            </div>
+            <div class="e-win" data-car="3" title="Site Map & Development">
+              <div class="e-win-label"><span class="e-win-num">③</span>Site Map &<br>Dev</div>
+            </div>
+            <div class="e-win" data-car="4" title="Readings & Research">
+              <div class="e-win-label"><span class="e-win-num">④</span>Readings &<br>Research</div>
+            </div>
+          </div>
+        </div>
+        <div class="loco-nose"><div class="headlight"></div></div>
+        <div class="loco-ch"></div>
+        <div class="loco-coup"></div>
+        <div class="wr" style="left:70px">
+          <div class="w wl"></div><div class="w wl"></div><div class="w wl"></div>
+          <div class="w wsm" style="bottom:6px"></div>
+        </div>
+      </div>
+
+<!-- CARRIAGE 1 — Workshop Content -->
+      <div class="fcar" id="fc1" data-car="1">
+        <div class="fcar-roof"></div>
+        <div class="fcar-body">
+          <div class="fcar-bl" style="left:30%"></div><div class="fcar-bl" style="left:60%"></div>
+          <div class="fcar-lbl">Workshop Content</div>
+          <div class="fcar-sub">Click to board</div>
+          <div class="fcar-arr">→</div>
+        </div>
+        <div class="fcar-ch"></div><div class="coup-l"></div><div class="coup-r"></div>
+        <div class="wr" style="left:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
+        <div class="wr" style="right:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
+        <div class="fcar-glow"></div>
+      </div>
+
+      <!-- CARRIAGE 2 — Sketches & Wireframes -->
+      <div class="fcar" id="fc2" data-car="2">
+        <div class="fcar-roof"></div>
+        <div class="fcar-body">
+          <div class="fcar-bl" style="left:33%"></div><div class="fcar-bl" style="left:66%"></div>
+          <div class="fcar-lbl">Sketches &amp; Wireframes</div>
+          <div class="fcar-sub">Click to board</div>
+          <div class="fcar-arr">→</div>
+        </div>
+        <div class="fcar-ch"></div><div class="coup-l"></div><div class="coup-r"></div>
+        <div class="wr" style="left:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
+        <div class="wr" style="right:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
+        <div class="fcar-glow"></div>
+      </div>
+
+      <!-- CARRIAGE 3 — Site Map & Development -->
+      <div class="fcar" id="fc3" data-car="3">
+        <div class="fcar-roof"></div>
+        <div class="fcar-body">
+          <div class="fcar-bl" style="left:25%"></div><div class="fcar-bl" style="left:50%"></div><div class="fcar-bl" style="left:75%"></div>
+          <div class="fcar-lbl">Site Map &amp; Dev</div>
+          <div class="fcar-sub">Click to board</div>
+          <div class="fcar-arr">→</div>
+        </div>
+        <div class="fcar-ch"></div><div class="coup-l"></div><div class="coup-r"></div>
+        <div class="wr" style="left:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
+        <div class="wr" style="right:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
+        <div class="fcar-glow"></div>
+      </div>
+
+      <!-- CARRIAGE 4 — Readings & Research -->
+      <div class="fcar" id="fc4" data-car="4">
+        <div class="fcar-roof"></div>
+        <div class="fcar-body">
+          <div class="fcar-bl" style="left:30%"></div><div class="fcar-bl" style="left:60%"></div>
+          <div class="fcar-lbl">Readings &amp; Research</div>
+          <div class="fcar-sub">Click to board</div>
+          <div class="fcar-arr">■</div>
+        </div>
+        <div class="fcar-ch"></div><div class="coup-l"></div>
+        <div class="wr" style="left:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
+        <div class="wr" style="right:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
+        <div class="fcar-glow"></div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
-<button id="nextBtn">Next →</button>
-<script src="script.js"></script>
+<div class="view hidden" id="v-interior">
+  <div id="int-scene">
+    <div class="int-nightsky"></div>
+    <div class="int-bg"></div>
+    <div class="int-ambient"></div>
+    <div class="ceiling-light"></div>
+    <div class="floor"></div>
+
+    <!-- Back btn -->
+    <button id="back-btn">← Back to Train</button>
+
+    <!-- Exit door -->
+    <div class="int-door" id="exit-door">
+      <div class="door-handle"></div>
+      <div class="door-label">EXIT</div>
+    </div>
+
+    <!-- Left passengers + side windows -->
+    <div class="seats-left" id="seats-left"></div>
+    <div class="side-wins left" id="side-wins-left">
+      <div class="side-win"></div>
+      <div class="side-win"></div>
+      <div class="side-win"></div>
+    </div>
+
+    <!-- Right passengers + side windows -->
+    <div class="seats-right" id="seats-right"></div>
+    <div class="side-wins right" id="side-wins-right">
+      <div class="side-win"></div>
+      <div class="side-win"></div>
+      <div class="side-win"></div>
+    </div>
+
+    <!-- Main content zone -->
+    <div id="project-zone">
+      <div class="int-header">
+        <div class="int-car-num" id="int-car-num">Carriage 01</div>
+        <div class="int-car-name" id="int-car-name">Workshop Content</div>
+      </div>
+      <div class="proj-windows" id="proj-windows"></div>
+    </div>
+
+  </div>
+</div>
+
+<div id="popup-overlay">
+  <div id="popup-box">
+    <button id="popup-close">✕</button>
+    <img id="popup-img" src="" alt="" style="display:none">
+    <div id="popup-placeholder">NO IMAGE YET</div>
+    <div id="popup-caption"></div>
+  </div>
+</div>
+<script src="script.js" defer></script>
     </body>
     
-</htm>
+</html>
