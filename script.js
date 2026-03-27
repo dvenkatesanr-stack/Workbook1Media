@@ -119,16 +119,29 @@ function buildProjectWindows(carIdx){
   const images = projectImages[carIdx] || [];
 
   for(let w = 0; w < 3; w++){
-    const img = images[w];
-    if(!img) continue;
+    const imgData = images[w];
 
     const win = document.createElement('div');
     win.className = 'proj-win';
 
-    win.addEventListener('click', ()=>{
-      openPopup(img.src, img.name);
-    });
+    if(imgData){
+      // CREATE IMAGE
+      const img = document.createElement('img');
+      img.src = imgData.src;
+      img.className = 'proj-win-img';
 
+      win.appendChild(img);
+
+      // CLICK OPENS POPUP
+      win.addEventListener('click', ()=>{
+        openPopup(imgData.src, imgData.name);
+      });
+    } else {
+      // optional placeholder
+      win.innerHTML = `<div class="proj-win-placeholder">No Image</div>`;
+    }
+
+    // APPEND INSIDE LOOP
     zone.appendChild(win);
   }
 }
