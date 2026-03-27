@@ -188,6 +188,7 @@ html,body{
   display:flex;
   align-items:flex-end;
   pointer-events:none;
+  gap:4vw;
 }
 
 .loco-shell{
@@ -245,11 +246,16 @@ html,body{
 
 
 .fcar{
-  position:relative;flex-shrink:0;
-  width:26vw;max-width:360px;height:220px;
+  position:relative;
+  flex-shrink:0;
+  width:40vw;
+  max-width:none;
+  height:220px;
   filter:drop-shadow(0 14px 28px rgba(0,0,0,.75));
-  cursor:pointer;pointer-events:all;
+  cursor:pointer;
+  pointer-events:all;
   transition:filter .3s ease;
+  margin-right:6vm;
 }
 .fcar:hover{filter:drop-shadow(0 14px 28px rgba(0,0,0,.75)) brightness(1.18);}
 .fcar:hover .fcar-glow{opacity:1;}

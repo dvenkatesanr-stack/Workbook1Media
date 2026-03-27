@@ -220,7 +220,11 @@ function init(){
 window.addEventListener('resize',()=>{
   resizeCanvas();
   world.style.transition='none';
-  world.style.transform=`translateX(${-current*window.innerWidth}px)`;
+  const offset = idx * window.innerWidth;
+world.style.transform = `translateX(${-offset}px)`;
+/* MOVE TRAIN SLIGHTLY for alignment */
+engWrap.style.transform = `translateX(${idx * 10}px)`;
+
   setTimeout(()=>{ world.style.transition='transform 1.1s cubic-bezier(0.16,1,0.3,1)'; },50);
 });
 
