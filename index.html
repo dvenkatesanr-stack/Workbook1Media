@@ -20,10 +20,8 @@
 <div class="view" id="v-outside">
   <!-- Deep space layers -->
   <div id="sky-bg"></div>
-  <div id="nebula"></div>
   <div id="moon-halo"></div>
   <div id="moon"></div>
-  <canvas id="stars-c"></canvas>
 
   <!-- mountains -->
   <div id="mtns">
@@ -131,7 +129,7 @@
           <div class="fcar-bl" style="left:30%"></div><div class="fcar-bl" style="left:60%"></div>
           <div class="fcar-lbl">Workshop Content</div>
           <div class="fcar-sub">Click to board</div>
-          <div class="fcar-arr">→</div>
+        
         </div>
         <div class="fcar-ch"></div><div class="coup-l"></div><div class="coup-r"></div>
         <div class="wr" style="left:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
@@ -146,7 +144,7 @@
           <div class="fcar-bl" style="left:33%"></div><div class="fcar-bl" style="left:66%"></div>
           <div class="fcar-lbl">Sketches &amp; Wireframes</div>
           <div class="fcar-sub">Click to board</div>
-          <div class="fcar-arr">→</div>
+          
         </div>
         <div class="fcar-ch"></div><div class="coup-l"></div><div class="coup-r"></div>
         <div class="wr" style="left:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
@@ -161,7 +159,7 @@
           <div class="fcar-bl" style="left:25%"></div><div class="fcar-bl" style="left:50%"></div><div class="fcar-bl" style="left:75%"></div>
           <div class="fcar-lbl">Site Map &amp; Dev</div>
           <div class="fcar-sub">Click to board</div>
-          <div class="fcar-arr">→</div>
+         
         </div>
         <div class="fcar-ch"></div><div class="coup-l"></div><div class="coup-r"></div>
         <div class="wr" style="left:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
@@ -176,7 +174,7 @@
           <div class="fcar-bl" style="left:30%"></div><div class="fcar-bl" style="left:60%"></div>
           <div class="fcar-lbl">Readings &amp; Research</div>
           <div class="fcar-sub">Click to board</div>
-          <div class="fcar-arr">■</div>
+          
         </div>
         <div class="fcar-ch"></div><div class="coup-l"></div>
         <div class="wr" style="left:24px"><div class="w wsm"></div><div class="w wsm"></div></div>
@@ -199,28 +197,6 @@
     <!-- Back btn -->
     <button id="back-btn">← Back to Train</button>
 
-    <!-- Exit door -->
-    <div class="int-door" id="exit-door">
-      <div class="door-handle"></div>
-      <div class="door-label">EXIT</div>
-    </div>
-
-    <!-- Left passengers + side windows -->
-    <div class="seats-left" id="seats-left"></div>
-    <div class="side-wins left" id="side-wins-left">
-      <div class="side-win"></div>
-      <div class="side-win"></div>
-      <div class="side-win"></div>
-    </div>
-
-    <!-- Right passengers + side windows -->
-    <div class="seats-right" id="seats-right"></div>
-    <div class="side-wins right" id="side-wins-right">
-      <div class="side-win"></div>
-      <div class="side-win"></div>
-      <div class="side-win"></div>
-    </div>
-
     <!-- Main content zone -->
     <div id="project-zone">
       <div class="int-header">
@@ -235,10 +211,17 @@
 
 <div id="popup-overlay">
   <div id="popup-box">
-    <button id="popup-close">✕</button>
-    <img id="popup-img" src="" alt="" style="display:none">
-    <div id="popup-placeholder">NO IMAGE YET</div>
-    <div id="popup-caption"></div>
+    <button id="popup-close">Exit</button>
+
+    <div class="popup-flex">
+        <div class="popup-left">
+            <img class="popup-img" src="" alt="">
+        </div>
+        
+        <div class="popup-right">
+             <div id="popup-caption"></div>
+             <a id="popup-link" href="#" target="_blank">Visit Site</a>
+        </div>
   </div>
 </div>
 <script src="script.js" defer></script>

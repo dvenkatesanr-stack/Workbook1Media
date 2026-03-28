@@ -10,7 +10,8 @@ const TOTAL = 5;
 
 const projectImages = {
   1: [
-    { src: "human-computer.jpeg", name: "Week 1" },
+    { src: "human-computer.jpeg",name: "Week 1",
+        text:"" },
     { src: "paper-prototype.jpeg", name: "week 3" },
     { src: "html-relay.jpeg", name: "Week 2" }
   ],
@@ -25,9 +26,12 @@ const projectImages = {
     { src: "figmafull-shot.png", name: "Site Map 3" }
   ],
   4: [
-    { src: "research1.jpg", name: "Research 1" },
-    { src: "research2.jpg", name: "Research 2" },
-    { src: "research3.jpg", name: "Research 3" }
+    { src: "MindfulCircle.png", name: "Research 1", link:"https://circles.todiane.com/",
+        text:"This project, Mindful Circle made by Diane Corriette, was found on To Dianeand built using p5.js with JavaScript. It is a simple interactive creative coding experiment that uses animation loops, draw functions, colour, and layering to create a responsive visual system.The interaction is minimal but intentional: as the user moves their mouse, the circles shift away from the cursor, then gradually return to a central point. This creates a continuous push-and-pull motion that directly links user input to visual response.What makes this project significant is how it uses a very simple mechanic, basic movement and proximity to produce a more meaningful experience. Rather than existing as purely aesthetic creative coding, it introduces purpose through responsiveness. The calm motion, soft behaviour of the elements, and visual feedback align with a mindfulness intention, showing how small-scale interactions can be designed to evoke a specific emotional state."},
+    { src: "hadakafolio.png", name: "Research 2", link:"https://hadaka.jp/",
+        text:"Hadaka’s portfolio website stands out for its dynamic use of scrolling, GIFs, and layered visuals. What makes it particularly effective is how relatively simple elements, like GIF, used to create a cinematic, almost 3D-like experience without relying on complex interactivity. The scrolling is central to the design. As the user moves through the site, images and GIFs transition fluidly, supported by a responsive wave-like background and a strong use of colour contrast. These elements work together to create a sense of depth and spatial movement, making the website feel immersive rather than flat.Another key aspect is how the work is presented. Instead of relying on large amounts of text, the site introduces projects through visual transitions and layering. The shift in styles such as moving from anime-inspired visuals to more minimal 3D scrolling sections, adds variation and keeps the experience engaging while still feeling cohesive.What makes this portfolio significant is its restraint. It doesn’t depend on highly complex animations or interactions; instead, it uses GIFs, scrolling, and composition strategically to build a dynamic experience. This shows how thoughtful visual structuring and motion can communicate a designer’s work effectively, even with relatively simple tools." },
+    { src: "qodaWebsite.png", name: "Research 3", link:"https://qodeinteractive.com/catalog/",
+        text:"This website by Qode Interactive focuses on distinctive transitions and horizontal scrolling to create a more engaging navigation experience. Instead of following a conventional layout, it experiments with how content is structured, particularly through the use of vertically arranged text. This shift makes the interface feel unique, while still remaining familiar enough to navigate intuitively.The interaction design is subtle but effective. Simple hover effects on menu items add a layer of responsiveness, making the experience feel interactive without being overwhelming. These small details contribute to a sense of control and feedback as the user moves through the site. Visually, the website combines transitions, GIFs, videos, and bold blocks of colour to create a strong and cohesive identity. These elements are not overly complex on their own, but when layered together, they enhance the overall engagement and reinforce branding. What makes this website significant is how it balances simplicity with experimentation. By rethinking text orientation, navigation flow, and visual transitions, it demonstrates how small design decisions can reshape a standard browsing experience into something more distinctive and memorable." }
   ]
 };
 
@@ -102,16 +106,6 @@ document.querySelectorAll('.fcar').forEach(car=>{
 
 let activeCar=1;
 
-function buildPassengers(side, count){
-  const el=document.getElementById('seats-'+side);
-  el.innerHTML='';
-  for(let i=0;i<count;i++){
-    const g=document.createElement('div'); g.className='seat-group';
-    g.innerHTML=`<div class="p-head"></div><div class="p-body"></div><div class="seat-back"></div><div class="seat-base"></div>`;
-    el.appendChild(g);
-  }
-}
-
 function buildProjectWindows(carIdx){
   const zone = document.getElementById('proj-windows');
   zone.innerHTML = '';
@@ -134,7 +128,7 @@ function buildProjectWindows(carIdx){
 
       // CLICK OPENS POPUP
       win.addEventListener('click', ()=>{
-        openPopup(imgData.src, imgData.name);
+        openPopup(imgData.src, imgData.name, imgData.link);
       });
     } else {
       // optional placeholder
@@ -145,7 +139,6 @@ function buildProjectWindows(carIdx){
     zone.appendChild(win);
   }
 }
-
   
 
 
@@ -154,8 +147,6 @@ function openInterior(carIdx){
   const data=CARS[carIdx];
   document.getElementById('int-car-num').textContent='Carriage '+data.num;
   document.getElementById('int-car-name').textContent=data.name;
-  buildPassengers('left',3);
-  buildPassengers('right',3);
   buildProjectWindows(carIdx);
   const vi=document.getElementById('v-interior');
   vi.classList.remove('hidden');
@@ -171,42 +162,58 @@ function closeInterior(){
 }
 
 document.getElementById('back-btn').addEventListener('click', closeInterior);
-document.getElementById('exit-door').addEventListener('click', closeInterior);
 
-function openPopup(src, caption){
+function openPopup(src, caption, link){
   const ov=document.getElementById('popup-overlay');
-  const img=document.getElementById('popup-img');
-  const ph=document.getElementById('popup-placeholder');
-  const cap=document.getElementById('popup-caption');
-  if(src){ img.src=src; img.style.display='block'; ph.style.display='none'; }
-  else { img.style.display='none'; ph.style.display='flex'; }
-  cap.textContent=caption||'';
+  const img=document.getSelector('.popup-img');
+  const caption=document.getElementById('popup-caption');
+  const caption=document.getElementById('popup-link');
+   img.src = src || '';
+  cap.textContent = caption || '';
+
+  if(link){
+    a.href = link;
+    a.style.display = 'inline-block';
+  } else {
+    a.style.display = 'none';
+  }
+
   ov.classList.add('show');
 }
+
 function closePopup(){
   document.getElementById('popup-overlay').classList.remove('show');
 }
 document.getElementById('popup-close').addEventListener('click',closePopup);
 document.getElementById('popup-overlay').addEventListener('click',e=>{ if(e.target===document.getElementById('popup-overlay')) closePopup(); });
 
-const curEl=document.getElementById('cur');
-const curtEl=document.getElementById('curt');
-let mx=0,my=0,cx=0,cy=0;
-window.addEventListener('mousemove',e=>{
-  mx=e.clientX; my=e.clientY;
-  curEl.style.left=mx+'px'; curEl.style.top=my+'px';
-  const ov=e.target.closest('.fcar,.e-win,button,a,.proj-win,.dot,#exit-door,.int-door');
-  curEl.classList.toggle('h',!!ov);
+const cur = document.getElementById('cur');
+const curt = document.getElementById('curt');
+
+let mx = 0, my = 0;
+let cx = 0, cy = 0;
+
+window.addEventListener('mousemove', e=>{
+  mx = e.clientX;
+  my = e.clientY;
+
+  cur.style.left = mx + 'px';
+  cur.style.top = my + 'px';
+
+  const hoverable = e.target.closest('button, .fcar, .e-win, .proj-win, a');
+  cur.classList.toggle('h', !!hoverable);
 });
 
-function raf(t){
-  const dt=Math.min(t-lastRaf,60); lastRaf=t;
-  drawStars(dt);
-  slOff=(slOff+.45)%40; sw.style.transform=`translateX(-${slOff}px)`;
-  cx+=(mx-cx)*.1; cy+=(my-cy)*.1;
-  curtEl.style.left=cx+'px'; curtEl.style.top=cy+'px';
-  requestAnimationFrame(raf);
+function animateCursor(){
+  cx += (mx - cx) * 0.1;
+  cy += (my - cy) * 0.1;
+
+  curt.style.left = cx + 'px';
+  curt.style.top = cy + 'px';
+
+  requestAnimationFrame(animateCursor);
 }
+animateCursor();
 
 function init(){
   world.style.width=(TOTAL*100)+'vw';
@@ -220,9 +227,9 @@ function init(){
 window.addEventListener('resize',()=>{
   resizeCanvas();
   world.style.transition='none';
-  const offset = idx * window.innerWidth;
+  const offset = current * window.innerWidth;
 world.style.transform = `translateX(${-offset}px)`;
-/* MOVE TRAIN SLIGHTLY for alignment */
+
 engWrap.style.transform = `translateX(${idx * 10}px)`;
 
   setTimeout(()=>{ world.style.transition='transform 1.1s cubic-bezier(0.16,1,0.3,1)'; },50);
