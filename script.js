@@ -71,14 +71,14 @@ const label = document.createElement('div');
       label.textContent = d.name || '';
       win.appendChild(label);
 
-    win.addEventListener('click', () => openPopup(d));
+     win.addEventListener('click', () => openPopup(d));
     } else {
       const ph = document.createElement('div');
-      ph.className   = 'proj-win-placeholder';
+      ph.className = 'proj-win-placeholder';
       ph.textContent = 'No Image';
       win.appendChild(ph);
     }
-
+ 
     zone.appendChild(win);
   }
 }
@@ -102,23 +102,23 @@ function closeInterior() {
 document.getElementById('back-btn').addEventListener('click', closeInterior);
 
 
-function openPopup(src, name, text, link) {
-  const ov      = document.getElementById('popup-overlay');
-  const nameEl   = document.querySelector('.popup-name');
-  const capEl   = document.getElementById('popup-caption');
-  const linkEl  = document.getElementById('popup-link');
-  const img1El  = document.getElementById('popup-img1');
-  const img2El  = document.getElementById('popup-img2');
+function openPopup(d) {
+  const ov     = document.getElementById('popup-overlay');
+  const nameEl = document.getElementById('popup-name');   
+  const capEl  = document.getElementById('popup-caption');
+  const linkEl = document.getElementById('popup-link');
+  const img1El = document.getElementById('popup-img1');
+  const img2El = document.getElementById('popup-img2');
+ 
+  nameEl.textContent = d.name || ''; 
+  capEl.textContent  = d.text || ''; 
 
-  nameEl.textContent  = d.name || '';
-  capEl.textContent   = d.text || '';
-
-  img1El.src     = d.img1 || '';
-  img1El.alt     = d.name || '';
+   img1El.src = d.img1 || '';
+  img1El.alt = d.name || '';
   img1El.style.display = d.img1 ? 'block' : 'none';
 
-   img2El.src     = d.img2 || '';
-  img2El.alt     = (d.name || '') + ' — 2';
+  img2El.src = d.img2 || '';
+  img2El.alt = (d.name || '') + ' — 2';
   img2El.style.display = d.img2 ? 'block' : 'none';
 
   const right = document.querySelector('.popup-right');
@@ -158,8 +158,10 @@ window.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
   curEl.style.left = mx + 'px';
   curEl.style.top  = my + 'px';
+  
   const hoverable = e.target.closest('button, .fcar-section, .e-win, .proj-win, a');
-   curEl.classList.toggle('h', !!over);
+  curEl.classList.toggle('h', !!hoverable);
+  
 });
 
 function tickCursor() {

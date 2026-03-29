@@ -40,6 +40,12 @@ html, body {
   z-index: 9998; transform: translate(-50%, -50%);
 }
 
+.view {
+  position: fixed; inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
 #v-outside { background: #020408;
   position: fixed; inset: 0;
   overflow-x: scroll;
@@ -89,8 +95,9 @@ html, body {
 }
  
 
-#ground-strip { position: fixed; bottom: 0; left: 0; right: 0; height: var(--ground-h); 
-z-index:2; pointer-events:none;
+#gnd {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: var(--ground-h); z-index: 2; pointer-events: none;
 }
  
 #gnd1 {
@@ -117,18 +124,15 @@ z-index:2; pointer-events:none;
 
  #train-strip {
   position: absolute;
-  /* sits just above the ground */
   bottom: var(--ground-h);
   left: 0;
   height: calc(100vh - var(--ground-h));
   display: flex;
   align-items: flex-end;   /* train sits on the ground line */
-  /* total width = 5 sections × 100vw */
   width: 500vw;
   z-index: 3;
 }
  
-/* Each section is exactly 100vw */
 .train-section {
   flex-shrink: 0;
   width: 100vw;
@@ -140,7 +144,7 @@ z-index:2; pointer-events:none;
 
 
 .loco-section {
-  justify-content: flex-end; /* loco right, text left */
+  justify-content: flex-end; 
 }
  
 /* Hero text block */
@@ -172,7 +176,8 @@ z-index:2; pointer-events:none;
 }
 
 .loco-wrap {
-  position: absolute; right: 0; bottom: 0;
+  position: absolute; 
+  right: 0; bottom: 0;
   width: 60%; height: 260px;
 }
 
@@ -298,7 +303,7 @@ z-index:2; pointer-events:none;
 .fcar-section:hover .fcar-glow { opacity: 1; }
 .fcar-section:hover .fcar-body-wrap { filter: brightness(1.12); }
  
-/* The freight car illustration fills full width of its section */
+
 .fcar-illus {
   position: relative;
   width: 92%;          /* slight margin so coupling visible */
@@ -364,6 +369,7 @@ z-index:2; pointer-events:none;
   opacity: 0; pointer-events: none;
 }
  
+
 
 
 #v-interior {
@@ -432,7 +438,16 @@ z-index:2; pointer-events:none;
   border: 3px solid #2A4060; border-radius: 8px;
   cursor: pointer; background: #060E1A;
   display: flex; flex-direction: column;
+  z-index:1;
 }
+
+.proj-win::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 14px;
+  background: linear-gradient(180deg, #2A4060, #1E3050);
+  border-radius: 5px 5px 0 0; z-index: 2;
+  pointer-events: none; 
+}
+
 .proj-win:hover { border-color: var(--gold); }
  
 .proj-win-img {
@@ -446,6 +461,7 @@ z-index:2; pointer-events:none;
   padding: 8px 10px;
   font-size: 10px; letter-spacing: 2px; color: var(--cream);
   text-align: center; z-index: 3;
+   pointer-events: none;
 }
  
 .proj-win-placeholder {
