@@ -4,6 +4,13 @@ const CARS = [
   { num:'2', name:'Sketches & Wireframes' },
   { num:'3', name:'Site Map & Development' },
   { num:'4', name:'Readings & Research' },
+  { num:'5',  name:'Carriage 5' },
+  { num:'6',  name:'Carriage 6' },
+  { num:'7',  name:'Carriage 7' },
+  { num:'8',  name:'Carriage 8' },
+  { num:'9',  name:'Carriage 9' },
+  { num:'10', name:'Carriage 10' },
+  { num:'11', name:'Carriage 11' },
 ];
 
 const projectImages = {
