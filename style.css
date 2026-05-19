@@ -129,7 +129,7 @@ html, body {
   height: calc(100vh - var(--ground-h));
   display: flex;
   align-items: flex-end;   /* train sits on the ground line */
-  width: 500vw;
+    width: 1200vw;   /* 1 loco section + 11 carriages = 12 sections × 100vw */
   z-index: 3;
 }
  
