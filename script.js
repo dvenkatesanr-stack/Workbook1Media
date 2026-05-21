@@ -4,13 +4,13 @@ const CARS = [
   { num:'2', name:'Sketches & Wireframes' },
   { num:'3', name:'Site Map & Development' },
   { num:'4', name:'Readings & Research' },
-  { num:'5',  name:'Carriage 5' },
-  { num:'6',  name:'Carriage 6' },
-  { num:'7',  name:'Carriage 7' },
-  { num:'8',  name:'Carriage 8' },
-  { num:'9',  name:'Carriage 9' },
-  { num:'10', name:'Carriage 10' },
-  { num:'11', name:'Carriage 11' },
+  { num:'5',  name:'Pointillism Picture' },
+  { num:'6',  name:'HuntNGather' },
+  { num:'7',  name:'Arduino "In my Headspace"' },
+  { num:'8',  name:'Arduino "Piano"' },
+  { num:'9',  name:'Research' },
+  { num:'10', name:'Ideas & Sketches' },
+  { num:'11', name:'Experiments' },
 ];
 
 const projectImages = {
@@ -64,39 +64,164 @@ document.querySelectorAll('.fcar-section').forEach(car => {
 });
 
 
+/* ─── GALLERY CARRIAGES (5–11): which car indices use the gallery layout ─── */
+const GALLERY_CARS = new Set([5, 6, 7, 8, 9, 10, 11]);
+
 function buildProjectWindows(carIdx) {
-  const zone   = document.getElementById('proj-windows');
+  const zone = document.getElementById('proj-windows');
   zone.innerHTML = '';
-  const images = projectImages[carIdx] || [];
 
-  for (let w = 0; w < 3; w++) {
-    const d   = images[w];
-    const win = document.createElement('div');
-    win.className = 'proj-win'
+  if (GALLERY_CARS.has(carIdx)) {
+    /* ── Gallery layout: 3×2 grid of media tiles ── */
+    zone.classList.add('gallery-mode');
+    const items = galleryData[carIdx] || [];
 
-if (d && d.img1) {
-      const img = document.createElement('img');
-      img.src       = d.img1;
-      img.alt       = d.name || '';
-      img.className = 'proj-win-img';
-      win.appendChild(img);
+    for (let i = 0; i < 6; i++) {
+      const d   = items[i];
+      const tile = document.createElement('div');
+      tile.className = 'gallery-tile';
 
-const label = document.createElement('div');
-      label.className   = 'proj-win-label';
-      label.textContent = d.name || '';
-      win.appendChild(label);
+      const mediaWrap = document.createElement('div');
+      mediaWrap.className = 'gallery-tile-media';
 
-     win.addEventListener('click', () => openPopup(d));
-    } else {
-      const ph = document.createElement('div');
-      ph.className = 'proj-win-placeholder';
-      ph.textContent = 'No Image';
-      win.appendChild(ph);
+      if (d && d.media) {
+        const isVideo = /\.(mp4|webm|ogg|mov)$/i.test(d.media);
+        if (isVideo) {
+          const vid = document.createElement('video');
+          vid.src = d.media;
+          vid.loop = true;
+          vid.muted = true;
+          vid.playsInline = true;
+          vid.autoplay = true;
+          mediaWrap.appendChild(vid);
+        } else {
+          const img = document.createElement('img');
+          img.src = d.media;
+          img.alt = d.caption || '';
+          mediaWrap.appendChild(img);
+        }
+        tile.addEventListener('click', () => openGalleryPopup(d));
+      } else {
+        const ph = document.createElement('div');
+        ph.className = 'gallery-tile-placeholder';
+        ph.textContent = 'Empty';
+        mediaWrap.appendChild(ph);
+      }
+
+      tile.appendChild(mediaWrap);
+
+      const cap = document.createElement('div');
+      cap.className = 'gallery-tile-caption';
+      cap.textContent = (d && d.caption) ? d.caption : '—';
+      tile.appendChild(cap);
+
+      zone.appendChild(tile);
     }
- 
-    zone.appendChild(win);
+  } else {
+    /* ── Original 3-window layout for carriages 1–4 ── */
+    zone.classList.remove('gallery-mode');
+    const images = projectImages[carIdx] || [];
+
+    for (let w = 0; w < 3; w++) {
+      const d   = images[w];
+      const win = document.createElement('div');
+      win.className = 'proj-win';
+
+      if (d && d.img1) {
+        const img = document.createElement('img');
+        img.src       = d.img1;
+        img.alt       = d.name || '';
+        img.className = 'proj-win-img';
+        win.appendChild(img);
+
+        const label = document.createElement('div');
+        label.className   = 'proj-win-label';
+        label.textContent = d.name || '';
+        win.appendChild(label);
+
+        win.addEventListener('click', () => openPopup(d));
+      } else {
+        const ph = document.createElement('div');
+        ph.className = 'proj-win-placeholder';
+        ph.textContent = 'No Image';
+        win.appendChild(ph);
+      }
+
+      zone.appendChild(win);
+    }
   }
 }
+
+/* ─── Gallery popup: reuses the existing popup but maps gallery fields ─── */
+function openGalleryPopup(d) {
+  openPopup({
+    name:  d.caption  || '',
+    text:  d.text     || '',
+    img1:  d.media    || '',
+    img2:  d.img2     || '',
+    link:  d.link     || ''
+  });
+}
+
+
+const galleryData = {
+  5: [
+    { media: 'sq1.png', caption: 'squarcurser', text: 'We experimented with creating custom cursors and backgrounds using p5.js. Through this experiment, we explored how to edit and manipulate the cursor’s shape, colour, size, and opacity to understand how small visual changes affect interaction and movement on screen. We changed the cursor into a yellow square and programmed it to leave behind a trail of low-opacity squares that followed the path of the cursor. This created a layered motion effect that visually tracked the user’s movement across the canvas' },
+    { media: 'sq2.png', caption: 'size and speed', text: 'We further experimented with randomness by exploring random colours, text, and shapes using p5.js. This experiment focused on generating unpredictable visual outputs, where different colours, words, and shapes would randomly appear and disappear across the background. The screen continuously filled with random pops of colour and text, creating a chaotic and constantly changing visual environment. Through this process, we explored how randomness and repetition can create movement, variation, and unpredictability within interactive digital spaces.' },
+    { media: 'sq3.png', caption: 'colour changing', text: 'This image shows the initial stage of the sketchboard development process. At this stage, we began experimenting with the overall layout, visual direction, and interactive elements of the sketchboard. The purpose of this early iteration was to test ideas, explore possible features, and understand how users might interact with the digital space before moving into further refinement and development.' },
+    { media: 'sq4.png', caption: 'pen curser', text: 'In this experiment, we changed the background colour to red and transformed the cursor into a circular ink-blot style brush. Instead of functioning as a standard cursor, it acted more like a sketch pen that could draw directly onto the screen as it moved. This created a more expressive and hand-drawn interaction style, allowing the movement of the cursor to leave flowing marks and sketch-like traces across the background.' },
+    { media: 'sq5.png', caption: 'click colour', text: 'Building on the ink-blot sketch cursor, we added a click-and-hold feature that allowed the colour of the drawing tool to change while interacting. When the mouse is pressed and held, the brush switches to a different colour, enabling us to toggle between multiple drawing states. This added another layer of interactivity to the sketching experience, allowing for more variation and control in how the marks are made and further expanding the idea of drawing as an evolving, responsive system.' },
+    { media: 'sq6.png', caption: 'drawing', text: 'For this task, we were asked to create a self-portrait using p5.js. I chose to represent myself through my online MC cartoon character instead of a realistic self-portrait. This allowed me to translate my identity into a more stylised and digital form, using shapes and coded elements to construct the character. Through this process, I explored how self-representation can be abstracted in creative coding, and how identity can be expressed through simplified visual components rather than literal imagery.' },
+  ],
+  6: [
+    { media: 'affordanceExample1.png', caption: 'Affordance of Interaction Reseach Consistant', text: 'Description.', link:'https://david-william-baum-2023.vercel.app/' },
+    { media: 'affordanceExample2.png', caption: 'Affordance of Interaction Reseach Complex', text: 'Description.', link:'https://www.bychudy.com/' },
+    { media: 'car6-img3.jpg', caption: 'Code Exterimentation', text: 'Description.' },
+    { media: 'car6-img4.jpg', caption: 'Experimenation', text: 'Description.' },
+    { media: 'car6-img5.jpg', caption: 'Simple Affordance', text: 'Description.' },
+    { media: 'car6-img6.jpg', caption: 'Complex Afforance', text: 'Description.' },
+  ],
+  7: [
+    { media: 'Set-up.jpeg', caption: 'Set-up', text: 'Description.' },
+    { media: 'making.jpeg', caption: 'Making', text: 'Description.' },
+    { media: 'Run1', caption: 'Trial Run 1', text: 'Description.' },
+    { media: 'Run2', caption: 'Trial Run 2', text: 'Description.' },
+    { media: 'editing', caption: 'Editing', text: 'Description.' },
+    { media: 'Run3', caption: 'Trial Run 3', text: 'Description.' },
+  ],
+  8: [
+    { media: 'set-up2.jpeg', caption: 'Set-up', text: 'Description.' },
+    { media: 'materials.jpeg', caption: 'Materials', text: 'Description.' },
+    { media: 'errorfixing,jpeg', caption: 'Error fixing', text: 'Description.' },
+    { media: 'x', caption: 'experimenting', text: 'Description.' },
+    { media: 'video1play.mp4', caption: 'Video 1', text: 'Description.' },
+    { media: 'x', caption: 'Video 2', text: 'Description.' },
+  ],
+  9: [
+    { media: '', caption: 'Re', text: 'Description.', link:'https://rainycatz.wordpress.com/2010/07/09/twinkle-tartiflette-an-arduino-driven-interactive-wordmusic-artwork/' },
+    { media: '', caption: 'Image 2', text: 'Description.', link:'https://community.element14.com/challenges-projects/project14/electronicart/b/blog/posts/electronic-art-app-controlled-by-arduino-uno'  },
+    { media: '', caption: 'Image 3', text: 'Description.', link:'https://www.hackster.io/ishotjr/birdfeedr-the-bird-only-feeder-powered-by-arduino-uno-q-2c3259'  },
+    { media: '', caption: 'Image 4', text: 'Description.', link:'https://www.hackster.io/carolinebuttet/globe-trotter-5188e8'  },
+    { media: '', caption: 'Image 5', text: 'Description.', link:'https://www.hackster.io/taunoerik/intelligent-art-969d81'  },
+    { media: '', caption: 'Image 6', text: 'Description.', link:'https://www.hackster.io/dominick-marino/possessed-portrait-updated-32a7a6'  },
+  ],
+  10: [
+    { media: '', caption: 'Image 1', text: 'Description.' },
+    { media: '', caption: 'Image 2', text: 'Description.' },
+    { media: '', caption: 'Image 3', text: 'Description.' },
+    { media: '', caption: 'Image 4', text: 'Description.' },
+    { media: '', caption: 'Image 5', text: 'Description.' },
+    { media: '', caption: 'Image 6', text: 'Description.' },
+  ],
+  11: [
+    { media: '', caption: 'Image 1', text: 'Description.' },
+    { media: '', caption: 'Image 2', text: 'Description.' },
+    { media: '', caption: 'Image 3', text: 'Description.' },
+    { media: '', caption: 'Image 4', text: 'Description.' },
+    { media: '', caption: 'Image 5', text: 'Description.' },
+    { media: '', caption: 'Image 6', text: 'Description.' },
+  ],
+};
 
 function openInterior(carIdx) {
   const data = CARS[carIdx];

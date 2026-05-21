@@ -373,7 +373,7 @@ html, body {
 
 
 #v-interior {
-    position: fixed; inset: 0;
+  position: fixed; inset: 0;
   background: #1A0E08;
   z-index: 100;
 }
@@ -556,3 +556,75 @@ html, body {
 #popup-link:hover { opacity: .7; color: var(--gold); border-color: var(--gold); }
  
 #file-input { display: none; }
+
+/* new changes to the content based off feedback ═══ */
+
+.proj-windows.gallery-mode {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 0;
+}
+
+.gallery-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #2A4060;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #060E1A;
+  min-height: 0;
+}
+
+.gallery-tile:hover { border-color: var(--gold); }
+
+.gallery-tile-media {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-tile-media img,
+.gallery-tile-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-tile-media::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 10px;
+  background: linear-gradient(180deg, #2A4060, #1E3050);
+  z-index: 2;
+}
+
+.gallery-tile-caption {
+  flex-shrink: 0;
+  padding: 6px 8px;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--cream);
+  background: rgba(4,8,20,.85);
+  text-align: center;
+  border-top: 1px solid rgba(42,64,96,.6);
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.gallery-tile-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(200,215,225,.2);
+  text-transform: uppercase;
+}
