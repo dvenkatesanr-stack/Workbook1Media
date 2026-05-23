@@ -197,12 +197,12 @@ const galleryData = {
     { media: 'run3.3.mp4', caption: 'Video 2', text: 'We then explored the setup in a more playful way by identifying the musical notes produced through the circuit and using them to play Mary Had a Little Lamb. This helped us understand how the system could be used not just for sensing inputs, but also for creating unique sound outputs and mimic instruments.' },
   ],
   9: [
-    { media: '', caption: 'Image 1', text: 'Description.', link:'https://rainycatz.wordpress.com/2010/07/09/twinkle-tartiflette-an-arduino-driven-interactive-wordmusic-artwork/' },
-    { media: '', caption: 'Image 2', text: 'Description.', link:'https://community.element14.com/challenges-projects/project14/electronicart/b/blog/posts/electronic-art-app-controlled-by-arduino-uno' },
-    { media: '', caption: 'Image 3', text: 'Description.', link:'https://www.hackster.io/ishotjr/birdfeedr-the-bird-only-feeder-powered-by-arduino-uno-q-2c3259'  },
-    { media: '', caption: 'Image 4', text: 'Description.', link:'https://www.hackster.io/carolinebuttet/globe-trotter-5188e8'  },
-    { media: '', caption: 'Image 5', text: 'Description.', link:'https://www.hackster.io/taunoerik/intelligent-art-969d81'  },
-    { media: '', caption: 'Image 6', text: 'Description.', link:'https://www.hackster.io/dominick-marino/possessed-portrait-updated-32a7a6'  },
+    { media: 'research1.webp', caption: 'Twinkle Tartiflette', text: 'Description.', link:'https://rainycatz.wordpress.com/2010/07/09/twinkle-tartiflette-an-arduino-driven-interactive-wordmusic-artwork/' },
+    { media: 'research2.png', caption: 'Electronic Art', text: 'Description.', link:'https://community.element14.com/challenges-projects/project14/electronicart/b/blog/posts/electronic-art-app-controlled-by-arduino-uno' },
+    { media: 'research3.png', caption: 'BirdFeedR', text: 'Description.', link:'https://www.hackster.io/ishotjr/birdfeedr-the-bird-only-feeder-powered-by-arduino-uno-q-2c3259'  },
+    { media: 'research4.mp4', caption: 'Globe Trotter', text: 'Description.', link:'https://www.hackster.io/carolinebuttet/globe-trotter-5188e8'  },
+    { media: 'research5.png', caption: 'Intelligent art', text: 'Description.', link:'https://www.hackster.io/taunoerik/intelligent-art-969d81'  },
+    { media: 'research6.webp', caption: 'Possessed Portrait', text: 'Description.', link:'https://www.hackster.io/dominick-marino/possessed-portrait-updated-32a7a6'  },
   ],
   10: [
     { media: '', caption: 'Image 1', text: 'Description.' },
